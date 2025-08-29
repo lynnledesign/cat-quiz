@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html, body {
+    height: 100%;
+}
+
+
+
+@font-face {
+    font-family: 'CHNO Pixel Code Pro';
+    src: url(fonts/CHNOPixelCodePro-Regular.woff);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CHNO Pixel Code Pro';
+    src: url(fonts/CHNOPixelCodePro-Italic.woff);
+    font-weight: normal;
+    font-style: italic;
+}
+
+h1{
+    font-family: 'CHNO Pixel Code Pro', monospace;
+    font-size: 2em;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+#text-box.title-font{
+    font-family: 'CHNO Pixel Code Pro', monospace;
+    font-size: 2em;
+    font-style: italic;
+}
+
+.question-font {
+    font-family: 'CHNO Pixel Code Pro', monospace;
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+body {
+    background-image: url('images/background-vector-14.png');
+     background-repeat: no-repeat;   /* don't tile the image */
+    background-size: cover;         /* stretch/scale to cover the whole screen */
+    background-position: center;    /* keep it centered */
+    font-family: "Space Mono", monospace; 
+    margin: 0;
+    padding-top: 100px;  /* fixed start point #cddf6c */ 
+    text-align: center; /* keeps content centered horizontally */
+    padding-bottom: 100px;
+}
+
+
+#container {
+    text-align: center; /* center text and buttons inside */
+    position: relative;
+    z-index: 1;
+}
+
+#text-box {
+    font-size: 1.2em;
+    margin: 0 auto 30px auto; /* top 0, left/right auto, bottom 20px */
+    max-width: 40%;
+    position: relative;
+    z-index: 1;
+}
+
+#text-box.results-active {
+  color: white;
+}
+
+img {
+    max-width: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cat-result {
+  width: 500px;   /* desired width */
+  max-width: none;
+  height: auto;   /* keeps aspect ratio */
+  display: block;
+  margin: 10px auto 40px auto; /* optional, centers image */
+}
+
+button {
+    background-color: black;
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    margin: 0px auto 15px auto;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 99px;
+    width: 20%; /*do different viewports for tablet and mobile later*/
+    font-family: "Space Mono", monospace;
+}
+
+.dialogue-btn {
+  background-color: black;
+  color: white;
+}
+
+.question-btn {
+  background-color: #313638;
+  color: white;
+}
+
+button:hover {
+    background: #c7dcd0;
+    color: black;
+}
+
+
+
+@media (max-width: 768px) {
+  button {
+    width: 50%;
+  }
+
+  .cat-gallery {
+    max-width: 70%;
+  }
+}
+
+footer{
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    background: transparent;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8em;
+    color: #333;
+}
+
+.fade-in {
+    opacity: 0;                 /* start invisible */
+    transition: opacity 0.3s ease-in-out; /* fade duration and easing */
+}
+
+.fade-in.show {
+    opacity: 1;                 /* fade to fully visible */
+}
+
+.creator-note{
+    background: white;
+    border: 2px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 600px;
+}
+
+.cat-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cats in one line */
+    justify-content: center;
+    gap: 15px; /* responsive gap */
+    width: min(900px, 80%);  /* max 900px wide, otherwise 80% of viewport */
+    margin: 20px auto 40px auto; /* 🟢 auto left/right centers the container */
+    align-items: flex-end;
+    background: #FFFEF8;
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* Medium screens (force 2x2 layout) */
+@media (max-width: 1400px) {
+  .cat-gallery {
+    grid-template-columns: repeat(2, 1fr); /* always 2 per row */
+    max-width: 70%;
+  }
+}
+
+/* Small screens (stack if needed) */
+@media (max-width: 768px) {
+  .cat-gallery {
+    grid-template-columns: 1fr; /* one per row */
+    max-width: 90%;
+  }
+}
+
+
+
+.cat-card {
+    text-align: center;
+}
+
+.cat-card img {
+  width: 150px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.cat-card img:hover {
+  transform: scale(1.1);
+}
+
+/* Modal styling */
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modal-img {
+  max-width: 80%;
+  max-height: 80%;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+#close-modal {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  font-family: 'CHNO Pixel Code Pro';
+  font-weight: normal;
+  cursor: pointer;
+}

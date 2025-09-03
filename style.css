@@ -133,17 +133,6 @@ button:hover {
 }
 
 
-
-@media (max-width: 768px) {
-  button {
-    width: 50%;
-  }
-
-  .cat-gallery {
-    max-width: 70%;
-  }
-}
-
 footer{
     position: fixed;
     bottom: 50px;
@@ -202,9 +191,10 @@ footer{
     grid-template-columns: 1fr; /* one per row */
     max-width: 90%;
   }
+    button {
+    width: 50%;
+  }
 }
-
-
 
 .cat-card {
     text-align: center;

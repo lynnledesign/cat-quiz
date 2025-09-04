@@ -76,6 +76,8 @@ body {
     z-index: 1;
     padding-top: 100px;  /* fixed start point #cddf6c */ 
     padding-bottom: 100px;
+    min-height: 100vh; /* ensure container takes full height of viewport */
+    box-sizing: border-box;
 }
 
 #text-box {

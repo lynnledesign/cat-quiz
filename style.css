@@ -81,6 +81,12 @@ body {
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    #container {
+        padding-top: 50px; /* less space on mobile */
+    }
+}
+
 #text-box {
     font-size: 1.2em;
     margin: 0 auto 30px auto; /* top 0, left/right auto, bottom 20px */

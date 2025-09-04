@@ -6,7 +6,7 @@
 }
 
 html, body {
-    height: 100%;
+    min-height: 100%;
 }
 
 
@@ -135,9 +135,10 @@ button:hover {
 }
 
 
-footer{
+footer {
     position: fixed;
-    bottom: 50px;
+    bottom: 0; /* stick flush to bottom */
+    left: 0;
     width: 100%;
     background: transparent;
     text-align: center;

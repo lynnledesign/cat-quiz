@@ -290,19 +290,14 @@ function showResult() {
   img.src = IMAGE_DIR + catImages[topCat];
 
   // Responsive width based on screen
-  if (window.innerWidth > 1400) {
-      // Large desktops
-      img.style.setProperty("width", "500px", "important");
-      img.style.setProperty("max-width", "500px", "important");
-  } else if (window.innerWidth >= 1025) {
-      // Laptops
-      img.style.setProperty("width", "350px", "important");
-      img.style.setProperty("max-width", "350px", "important");
-  } else {
-      // Tablets / Mobiles
-      img.style.setProperty("width", "70%", "important");
-      img.style.setProperty("max-width", "300px", "important");
-  }
+if (window.innerWidth >= 1600) { // really large desktop
+    img.style.setProperty("width", "500px", "important");
+} else if (window.innerWidth >= 1025) { // laptops / medium desktops
+    img.style.setProperty("width", "350px", "important");
+} else { // tablets / mobiles
+    img.style.setProperty("width", "70%", "important");
+    img.style.setProperty("max-width", "300px", "important");
+}
 
   img.style.setProperty("height", "auto", "important"); // always scale proportionally
 

@@ -141,14 +141,14 @@ button {
 /* ===== Laptop screens ===== */
 @media (max-width: 1400px) and (min-width: 1025px) {
     button {
-        width: clamp(180px, 30%, 300px); /* a little wider than desktop */
+        width: clamp(180px, 35%, 300px); /* wider for laptops */
     }
 }
 
 /* ===== Tablet range ===== */
-@media (max-width: 1400px) and (min-width: 769px) {
+@media (max-width: 1024px) and (min-width: 769px) {
     button {
-        width: clamp(180px, 30%, 300px);
+        width: clamp(160px, 40%, 300px);
     }
 }
 

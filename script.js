@@ -261,81 +261,78 @@ function showScene() {
 
 
 function showResult() {
-    const textBox = document.getElementById("text-box");
-    const buttonsDiv = document.getElementById("buttons");
+  const textBox = document.getElementById("text-box");
+  textBox.classList.add("results-active");
 
-    // show overlay when results appear
-    const overlay = document.getElementById("overlay");
-    overlay.style.opacity = 1;
+  const buttonsDiv = document.getElementById("buttons");
+  buttonsDiv.innerHTML = "";
 
-    // determine top cat
-    const topCat = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  // show overlay when results appear
+  const overlay = document.getElementById("overlay");
+  overlay.style.opacity = 1;
 
-    // update text
-    textBox.textContent = `Your result is... ${topCat} Kitty!`;
-    buttonsDiv.innerHTML = "";
+  // Determine top cat
+  const topCat = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  textBox.textContent = `Your result is... ${topCat} Kitty!`;
 
-    const IMAGE_DIR = "images/";
-    const catImages = {
-        Fire: "fire-cat.png",
-        Plant: "plant-cat.png",
-        Seaside: "water-cat.png",
-        Moon: "moon-cat.png",
-    };
+  const IMAGE_DIR = "images/";
+  const catImages = {
+    Fire:  "fire-cat.png",
+    Plant: "plant-cat.png",
+    Seaside: "water-cat.png",
+    Moon:  "moon-cat.png",
+  };
 
-    // create cat image
-    const img = document.createElement("img");
-    img.classList.add("cat-result");
-    img.alt = `${topCat} Cat`;
-    img.src = IMAGE_DIR + catImages[topCat];
+  // Create image
+  const img = document.createElement("img");
+  img.classList.add("cat-result"); // keeps styling like border-radius/margin
+  img.alt = `${topCat} Cat`;
+  img.src = IMAGE_DIR + catImages[topCat];
 
-    // reset any inherited widths
-    img.style.width = "";
-    img.style.maxWidth = "";
-    img.style.height = "auto";
+  // Responsive width based on screen
+  if (window.innerWidth > 1400) {
+      // Large desktops
+      img.style.setProperty("width", "500px", "important");
+      img.style.setProperty("max-width", "500px", "important");
+  } else if (window.innerWidth >= 1025) {
+      // Laptops
+      img.style.setProperty("width", "350px", "important");
+      img.style.setProperty("max-width", "350px", "important");
+  } else {
+      // Tablets / Mobiles
+      img.style.setProperty("width", "70%", "important");
+      img.style.setProperty("max-width", "300px", "important");
+  }
 
-    // responsive width based on screen size
-    if (window.innerWidth > 1400) {
-        // large desktops
-        img.style.setProperty("width", "clamp(400px, 30vw, 500px)", "important");
-    } else if (window.innerWidth >= 1025) {
-        // laptops
-        img.style.setProperty("width", "clamp(300px, 40vw, 400px)", "important");
-    } else {
-        // tablets / mobiles
-        img.style.setProperty("width", "clamp(200px, 70vw, 300px)", "important");
-    }
+  img.style.setProperty("height", "auto", "important"); // always scale proportionally
 
-    // helpful error fallback
-    img.onerror = () => {
-        console.warn("Image failed to load:", img.src);
-        textBox.textContent += " (Image not found)";
-    };
+  // Error fallback
+  img.onerror = () => {
+    console.warn("Image failed to load:", img.src);
+    textBox.textContent += " (Image not found)";
+  };
 
-    // append image first
-    buttonsDiv.appendChild(img);
+  buttonsDiv.appendChild(img);
 
-    // Back to Home button
-    const homeBtn = document.createElement("button");
-    homeBtn.textContent = "Back to Home";
-    homeBtn.classList.add("dialogue-btn");
-    homeBtn.onclick = () => {
-        overlay.style.opacity = 0;
-        textBox.classList.remove("results-active");
-        scores = { Fire: 0, Plant: 0, Seaside: 0, Moon: 0 };
-        currentScene = 0;
-        showScene();
-    };
-    buttonsDiv.appendChild(homeBtn);
+  // Back to Home button
+  const homeBtn = document.createElement("button");
+  homeBtn.textContent = "Back to Home";
+  homeBtn.onclick = () => {
+      overlay.style.opacity = 0;
+      textBox.classList.remove("results-active");
+      scores = { Fire: 0, Plant: 0, Seaside: 0, Moon: 0 };
+      currentScene = 0;
+      showScene();
+  };
+  buttonsDiv.appendChild(homeBtn);
 
-    // Explore Other Kitties button
-    const exploreBtn = document.createElement("button");
-    exploreBtn.textContent = "Explore Other Kitties";
-    exploreBtn.classList.add("dialogue-btn");
-    exploreBtn.onclick = () => {
-        window.location.href = "cats.html";
-    };
-    buttonsDiv.appendChild(exploreBtn);
+  // Explore Other Kitties button
+  const exploreBtn = document.createElement("button");
+  exploreBtn.textContent = "Explore Other Kitties";
+  exploreBtn.onclick = () => {
+      window.location.href = "cats.html";
+  };
+  buttonsDiv.appendChild(exploreBtn);
 }
 
 

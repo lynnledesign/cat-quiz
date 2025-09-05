@@ -138,6 +138,13 @@ button {
     width: clamp(150px, 20%, 300px);
 }
 
+/* ===== Laptop screens ===== */
+@media (max-width: 1400px) and (min-width: 1025px) {
+    button {
+        width: clamp(180px, 30%, 300px); /* a little wider than desktop */
+    }
+}
+
 /* ===== Tablet range ===== */
 @media (max-width: 1400px) and (min-width: 769px) {
     button {

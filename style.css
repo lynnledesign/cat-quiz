@@ -100,16 +100,22 @@ h1 {
     text-align: center;
     position: relative;
     z-index: 1;
-    padding-top: 100px;
     flex: 1 1 auto;
 }
 
-@media (min-width: 1025px) and (max-width: 1400px) {
+/* Large desktop */
+@media (min-width: 1401px) {
     #container {
-        padding-top: 50px !important;
+        padding-top: 100px;
     }
 }
 
+/* Laptops (1025px - 1600px for MacBook) */
+@media (min-width: 1025px) and (max-width: 1600px) {
+    #container {
+        padding-top: 50px;
+    }
+}
 /* ==============================
    Buttons - Responsive
 ============================== */

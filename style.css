@@ -191,11 +191,18 @@ img {
     margin-bottom: 20px;
 }
 
+#text-box.results-active + #buttons button {
+    width: clamp(150px, 25%, 300px); /* smaller than normal buttons */
+    margin: 10px auto;
+}
+
+/* Result image bigger */
 .cat-result {
-    width: 500px;
+    width: 70%;        /* bigger image */
+    max-width: 500px;  /* caps size on large screens */
     height: auto;
     display: block;
-    margin: 10px auto 40px auto;
+    margin: 20px auto 30px auto;
 }
 
 #image img {

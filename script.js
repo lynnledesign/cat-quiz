@@ -162,99 +162,100 @@ function showScene() {
   let textBox = document.getElementById("text-box");
   let buttonsDiv = document.getElementById("buttons");
   
-  //show text
-textBox.classList.remove("title-font", "question-font");
+  // Remove previous font and dialogue classes
+  textBox.classList.remove("title-font", "question-font", "dialogue-scene");
 
-// Apply font classes
-if (scene.isTitle) {
-    textBox.classList.add("title-font");
-} else if (scene.type === "question") {
-    textBox.classList.add("question-font");
+  // Apply font classes
+  if (scene.isTitle) {
+      textBox.classList.add("title-font");
+  } else if (scene.type === "question") {
+      textBox.classList.add("question-font");
+  }
+
+ if (scene.type === "dialogue" && !scene.isCreatorNote && !scene.isTitle) {
+    textBox.classList.add("dialogue-scene");
 }
 
-// Show text
-if (scene.type === "dialogue" && scene.isCreatorNote) {
-    textBox.innerHTML = `<div class="creator-note">${scene.text}</div>`; // allow HTML
-} else {
-    textBox.textContent = scene.text;
-}
+  // Show text
+  if (scene.type === "dialogue" && scene.isCreatorNote) {
+      textBox.innerHTML = `<div class="creator-note">${scene.text}</div>`; // allow HTML
+  } else {
+      textBox.textContent = scene.text;
+  }
 
+  // Show image if there is one
+  let imageDiv = document.getElementById("image");
+  imageDiv.innerHTML = "";
+  if (scene.image) {
+      let img = document.createElement("img"); // make new <img> element 
+      img.src = scene.image; // set the source
+      img.style.maxWidth = scene.maxWidth || "300px"; // set max width
 
-//show image if there is one
+      if (scene.fadeIn) {
+          img.classList.add("fade-in");
+          setTimeout(() => {
+              img.classList.add("show");
+          }, 10);
+      }
 
-let imageDiv = document.getElementById("image");
-imageDiv.innerHTML = "";
-if (scene.image) {
-let img = document.createElement("img"); // make new <img> element 
-img.src = scene.image; // set the source
-img.style.maxWidth = scene.maxWidth || "300px"; // set max width
+      imageDiv.appendChild(img); // append it to the imageDiv
+  } 
 
-   if (scene.fadeIn) {
-        img.classList.add("fade-in");
-        setTimeout(() => {
-            img.classList.add("show");
-        }, 10);
-    }
+  // Show buttons
+  buttonsDiv.innerHTML = "";
 
-imageDiv.appendChild(img); // append it to the imageDiv
-
-} 
-
-// show buttons
-buttonsDiv.innerHTML = "";
-
-if (scene.type === "dialogue") {
-    if (scene.buttons) {
-        // Multiple buttons
-        scene.buttons.forEach(label => {
-            let btn = document.createElement("button");
-            btn.textContent = label;
-            btn.classList.add("dialogue-btn"); // 🎨 style for dialogue
-            btn.onclick = () => {
-                if (scene.sound) {
-                    const audio = new Audio(scene.sound);
-                    audio.currentTime = 0;
-                    audio.play();
-                }
-                currentScene++;
-                showScene();
-            };
-            buttonsDiv.appendChild(btn);
-        });
-    } else {
-        // Single button (default or custom)
-        let btn = document.createElement("button");
-        btn.textContent = scene.buttonText || "Next";
-        btn.classList.add("dialogue-btn"); // 🎨 style for dialogue
-        btn.onclick = () => {
-            if (scene.sound) {
-                const audio = new Audio(scene.sound);
-                audio.currentTime = 0;
-                audio.play();
-            }
-            currentScene++;
-            showScene();
-        };
-        buttonsDiv.appendChild(btn);
-    }
-} 
-else if (scene.type === "question") {
-    scene.options.forEach(option => {
-        let btn = document.createElement("button");
-        btn.textContent = option.text;
-        btn.classList.add("question-btn"); // 🎨 style for questions
-        btn.onclick = () => {
-            option.cats.forEach(cat => scores[cat] += 1);
-            currentScene++;
-            if (currentScene >= scenes.length) {
-                showResult();
-            } else {
-                showScene();
-            }
-        };
-        buttonsDiv.appendChild(btn);
-    });
-}
+  if (scene.type === "dialogue") {
+      if (scene.buttons) {
+          // Multiple buttons
+          scene.buttons.forEach(label => {
+              let btn = document.createElement("button");
+              btn.textContent = label;
+              btn.classList.add("dialogue-btn"); // 🎨 style for dialogue
+              btn.onclick = () => {
+                  if (scene.sound) {
+                      const audio = new Audio(scene.sound);
+                      audio.currentTime = 0;
+                      audio.play();
+                  }
+                  currentScene++;
+                  showScene();
+              };
+              buttonsDiv.appendChild(btn);
+          });
+      } else {
+          // Single button (default or custom)
+          let btn = document.createElement("button");
+          btn.textContent = scene.buttonText || "Next";
+          btn.classList.add("dialogue-btn"); // 🎨 style for dialogue
+          btn.onclick = () => {
+              if (scene.sound) {
+                  const audio = new Audio(scene.sound);
+                  audio.currentTime = 0;
+                  audio.play();
+              }
+              currentScene++;
+              showScene();
+          };
+          buttonsDiv.appendChild(btn);
+      }
+  } 
+  else if (scene.type === "question") {
+      scene.options.forEach(option => {
+          let btn = document.createElement("button");
+          btn.textContent = option.text;
+          btn.classList.add("question-btn"); // 🎨 style for questions
+          btn.onclick = () => {
+              option.cats.forEach(cat => scores[cat] += 1);
+              currentScene++;
+              if (currentScene >= scenes.length) {
+                  showResult();
+              } else {
+                  showScene();
+              }
+          };
+          buttonsDiv.appendChild(btn);
+      });
+  }
 }
 
 

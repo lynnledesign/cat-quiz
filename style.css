@@ -75,8 +75,7 @@ h1 {
 
 #text-box.results-active {
     color: white;
-    padding-top: 50px;
-}
+    }
 
 /* ==============================
    Overlay
@@ -105,6 +104,10 @@ h1 {
     flex: 1 1 auto;
 }
 
+#container.results-active {
+  padding-top: 50px;
+  transition: padding-top 0.3s ease; 
+}
 /* ==============================
    Buttons - Responsive
 ============================== */

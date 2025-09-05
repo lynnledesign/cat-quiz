@@ -262,7 +262,9 @@ function showScene() {
 
 function showResult() {
   const textBox = document.getElementById("text-box");
+  const container = document.getElementById("container");
   textBox.classList.add("results-active");
+  container.classList.add("results-active");
 
   const buttonsDiv = document.getElementById("buttons");
   buttonsDiv.innerHTML = "";

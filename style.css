@@ -115,9 +115,9 @@ button {
     font-size: 1em;
     cursor: pointer;
     border-radius: 99px;
-    width: clamp(150px, 20%, 300px);  
     display: block;
     font-family: "Space Mono", monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
@@ -133,17 +133,24 @@ button:hover {
     background-color: #313638;
 }
 
-/* Tablet range */
+/* ===== Desktop (default) ===== */
+button {
+    width: clamp(150px, 20%, 300px);
+}
+
+/* ===== Tablet range ===== */
 @media (max-width: 1400px) and (min-width: 769px) {
     button {
         width: clamp(180px, 30%, 300px);
     }
 }
 
-/* Mobile range */
+/* ===== Mobile range ===== */
 @media (max-width: 768px) {
     button {
-        width: clamp(140px, 70%, 300px);
+        width: 70%;       /* 70% of viewport width */
+        min-width: 140px; /* ensure it never gets too small */
+        max-width: 300px; /* ensure it never gets too big */
     }
 }
 
@@ -321,3 +328,4 @@ footer {
         max-width: 90%;
     }
 }
+

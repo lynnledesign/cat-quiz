@@ -289,14 +289,13 @@ function showResult() {
   img.alt = `${topCat} Cat`;
   img.src = IMAGE_DIR + catImages[topCat];
 
-  // Responsive width based on screen
-if (window.innerWidth >= 1600) { // really large desktop
-    img.style.setProperty("width", "500px", "important");
-} else if (window.innerWidth >= 1025) { // laptops / medium desktops
-    img.style.setProperty("width", "350px", "important");
-} else { // tablets / mobiles
-    img.style.setProperty("width", "70%", "important");
-    img.style.setProperty("max-width", "300px", "important");
+// inside showResult()
+if (window.innerWidth >= 1600) {
+    img.style.width = "500px"; // big desktop
+} else if (window.innerWidth >= 1025) {
+    img.style.width = "350px"; // laptops / MacBooks
+} else {
+    img.style.width = "70%"; // tablet/mobile
 }
 
   img.style.setProperty("height", "auto", "important"); // always scale proportionally

@@ -261,77 +261,81 @@ function showScene() {
 
 
 function showResult() {
-  let textBox = document.getElementById("text-box")
-  textBox.classList.add("results-active");
-  let buttonsDiv = document.getElementById("buttons");
+    const textBox = document.getElementById("text-box");
+    const buttonsDiv = document.getElementById("buttons");
 
-  // show overlay when results appear
-  const overlay = document.getElementById("overlay");
-  overlay.style.opacity = 1;
+    // show overlay when results appear
+    const overlay = document.getElementById("overlay");
+    overlay.style.opacity = 1;
 
-  let topCat = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    // determine top cat
+    const topCat = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 
-  textBox.textContent = `Your result is... ${topCat} Kitty!`;
-  buttonsDiv.innerHTML = "";
+    // update text
+    textBox.textContent = `Your result is... ${topCat} Kitty!`;
+    buttonsDiv.innerHTML = "";
 
-  const IMAGE_DIR = "images/"; // change to "" if your files are next to the HTML
-  const catImages = {
-    Fire:  "fire-cat.png",
-    Plant: "plant-cat.png",
-    Seaside: "water-cat.png",
-    Moon:  "moon-cat.png",
-  };
+    const IMAGE_DIR = "images/";
+    const catImages = {
+        Fire: "fire-cat.png",
+        Plant: "plant-cat.png",
+        Seaside: "water-cat.png",
+        Moon: "moon-cat.png",
+    };
 
-  const img = document.createElement("img");
-  img.classList.add("cat-result");
-  img.alt = `${topCat} Cat`;
+    // create cat image
+    const img = document.createElement("img");
+    img.classList.add("cat-result");
+    img.alt = `${topCat} Cat`;
+    img.src = IMAGE_DIR + catImages[topCat];
 
-  // choose path
-  const src = IMAGE_DIR + catImages[topCat];
-  console.log("TopCat =", topCat, "Image path =", src); // <- shows exactly what it’s loading
-  img.src = src;
+    // reset any inherited widths
+    img.style.width = "";
+    img.style.maxWidth = "";
+    img.style.height = "auto";
 
-// responsive width based on screen
-if (window.innerWidth > 1400) {
-    // Large desktops
-    img.style.setProperty("width", "clamp(400px, 30vw, 500px)", "important");
-} else if (window.innerWidth >= 1025) {
-    // Laptops
-    img.style.setProperty("width", "clamp(300px, 40vw, 400px)", "important");
-} else {
-    // Tablets / Mobiles
-    img.style.setProperty("width", "clamp(200px, 70vw, 300px)", "important");
-}
+    // responsive width based on screen size
+    if (window.innerWidth > 1400) {
+        // large desktops
+        img.style.setProperty("width", "clamp(400px, 30vw, 500px)", "important");
+    } else if (window.innerWidth >= 1025) {
+        // laptops
+        img.style.setProperty("width", "clamp(300px, 40vw, 400px)", "important");
+    } else {
+        // tablets / mobiles
+        img.style.setProperty("width", "clamp(200px, 70vw, 300px)", "important");
+    }
 
-  // helpful error fallback
-  img.onerror = () => {
-    console.warn("Image failed to load:", src);
-    textBox.textContent += " (Image not found)";
-    // optional: img.src = IMAGE_DIR + "default-cat.png";
-  };
+    // helpful error fallback
+    img.onerror = () => {
+        console.warn("Image failed to load:", img.src);
+        textBox.textContent += " (Image not found)";
+    };
 
-buttonsDiv.appendChild(img);
+    // append image first
+    buttonsDiv.appendChild(img);
 
-  const homeBtn = document.createElement("button");
-  homeBtn.textContent = "Back to Home";
-  homeBtn.onclick = () => {
-      // Reset scores if you want a fresh start
-      overlay.style.opacity = 0; // remove dark filter
-      document.getElementById("text-box").classList.remove("results-active");
-      scores = { Fire: 0, Plant: 0, Seaside: 0, Moon: 0 };
-      currentScene = 0;
-      showScene();
-  };
-  buttonsDiv.appendChild(homeBtn);
+    // Back to Home button
+    const homeBtn = document.createElement("button");
+    homeBtn.textContent = "Back to Home";
+    homeBtn.classList.add("dialogue-btn");
+    homeBtn.onclick = () => {
+        overlay.style.opacity = 0;
+        textBox.classList.remove("results-active");
+        scores = { Fire: 0, Plant: 0, Seaside: 0, Moon: 0 };
+        currentScene = 0;
+        showScene();
+    };
+    buttonsDiv.appendChild(homeBtn);
 
-  // Explore Other Kitties button
-  const exploreBtn = document.createElement("button");
-  exploreBtn.textContent = "Explore Other Kitties";
-  exploreBtn.onclick = () => {
-      window.location.href = "cats.html"; // Go to your cats page
-  };
-  buttonsDiv.appendChild(exploreBtn);
-  
+    // Explore Other Kitties button
+    const exploreBtn = document.createElement("button");
+    exploreBtn.textContent = "Explore Other Kitties";
+    exploreBtn.classList.add("dialogue-btn");
+    exploreBtn.onclick = () => {
+        window.location.href = "cats.html";
+    };
+    buttonsDiv.appendChild(exploreBtn);
 }
 
 

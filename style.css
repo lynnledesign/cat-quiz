@@ -115,7 +115,7 @@ button {
     font-size: 1em;
     cursor: pointer;
     border-radius: 99px;
-    width: 20%;
+    width: clamp(150px, 20%, 300px);  
     display: block;
     font-family: "Space Mono", monospace;
 }
@@ -297,7 +297,7 @@ footer {
 
     /* Buttons */
     button {
-        width: 50%;
+        width: clamp(120px, 50%, 250px); 
     }
 
     /* Dialogue images */
@@ -310,5 +310,12 @@ footer {
     .cat-gallery {
         grid-template-columns: 1fr;
         max-width: 90%;
+    }
+}
+
+/* Tablet range: roughly 769px to 1400px */
+@media (max-width: 1400px) and (min-width: 769px) {
+    button {
+        width: clamp(180px, 30%, 300px); /* slightly wider, more proportional */
     }
 }

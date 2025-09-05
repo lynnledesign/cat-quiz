@@ -291,6 +291,16 @@ function showResult() {
   console.log("TopCat =", topCat, "Image path =", src); // <- shows exactly what it’s loading
   img.src = src;
 
+    // Set responsive width based on window width
+  if (window.innerWidth >= 1025 && window.innerWidth <= 1440) {
+      img.style.width = "350px"; // laptop
+  } else if (window.innerWidth > 1440) {
+      img.style.width = "500px"; // large desktop
+  } else if (window.innerWidth <= 1024) {
+      img.style.width = "70%"; // tablet/mobile
+      img.style.maxWidth = "300px";
+  }
+
   // helpful error fallback
   img.onerror = () => {
     console.warn("Image failed to load:", src);
@@ -298,7 +308,7 @@ function showResult() {
     // optional: img.src = IMAGE_DIR + "default-cat.png";
   };
 
-  buttons.appendChild(img);
+buttonsDiv.appendChild(img);
 
   const homeBtn = document.createElement("button");
   homeBtn.textContent = "Back to Home";

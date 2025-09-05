@@ -104,10 +104,9 @@ h1 {
     flex: 1 1 auto;
 }
 
-/* Laptops: 1025px - 1400px */
 @media (min-width: 1025px) and (max-width: 1400px) {
     #container {
-        padding-top: 50px; /* smaller top padding for laptops */
+        padding-top: 50px !important;
     }
 }
 

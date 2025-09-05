@@ -198,19 +198,13 @@ img {
 
 /* Result image bigger */
 .cat-result {
-    width: 70%;        /* bigger image */
-    max-width: 500px;  /* caps size on large screens */
     height: auto;
     display: block;
     margin: 20px auto 30px auto;
+    max-width: 100%;
 }
 
-/* Scale down on laptops (1025px – 1440px) */
-@media (min-width: 1025px) and (max-width: 1440px) {
-    .cat-result {
-        width: 350px !important;
-    }
-}
+
 #image img {
     width: 100%;
     height: auto;

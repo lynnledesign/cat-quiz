@@ -141,7 +141,7 @@ button {
 /* ===== Laptop screens ===== */
 @media (max-width: 1400px) and (min-width: 1025px) {
     button {
-        width: clamp(180px, 35%, 300px); /* wider for laptops */
+        width: clamp(180px, 35%, 420px); /* wider for laptops */
     }
 }
 

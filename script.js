@@ -293,7 +293,7 @@ function showResult() {
 if (window.innerWidth >= 1600) {
     img.style.width = "500px"; // big desktop
 } else if (window.innerWidth >= 1025) {
-    img.style.width = "350px"; // laptops / MacBooks
+    img.style.width = "400px"; // laptops / MacBooks
 } else {
     img.style.width = "70%"; // tablet/mobile
 }

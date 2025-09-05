@@ -205,6 +205,12 @@ img {
     margin: 20px auto 30px auto;
 }
 
+/* Scale down on laptops (1025px – 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .cat-result {
+        width: 350px !important;
+    }
+}
 #image img {
     width: 100%;
     height: auto;

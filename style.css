@@ -133,6 +133,20 @@ button:hover {
     background-color: #313638;
 }
 
+/* Tablet range */
+@media (max-width: 1400px) and (min-width: 769px) {
+    button {
+        width: clamp(180px, 30%, 300px);
+    }
+}
+
+/* Mobile range */
+@media (max-width: 768px) {
+    button {
+        width: clamp(140px, 70%, 300px);
+    }
+}
+
 /* ==============================
    Dialogue Scenes & Creator Notes
 ============================== */
@@ -295,11 +309,6 @@ footer {
         width: 100%;
     }
 
-    /* Buttons */
-    button {
-        width: clamp(120px, 50%, 250px); 
-    }
-
     /* Dialogue images */
     #image img {
         max-width: 90vw;
@@ -310,12 +319,5 @@ footer {
     .cat-gallery {
         grid-template-columns: 1fr;
         max-width: 90%;
-    }
-}
-
-/* Tablet range: roughly 769px to 1400px */
-@media (max-width: 1400px) and (min-width: 769px) {
-    button {
-        width: clamp(180px, 30%, 300px); /* slightly wider, more proportional */
     }
 }

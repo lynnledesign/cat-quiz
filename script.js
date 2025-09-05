@@ -291,15 +291,17 @@ function showResult() {
   console.log("TopCat =", topCat, "Image path =", src); // <- shows exactly what it’s loading
   img.src = src;
 
-    // Set responsive width based on window width
-  if (window.innerWidth >= 1025 && window.innerWidth <= 1440) {
-      img.style.width = "350px"; // laptop
-  } else if (window.innerWidth > 1440) {
-      img.style.width = "500px"; // large desktop
-  } else if (window.innerWidth <= 1024) {
-      img.style.width = "70%"; // tablet/mobile
-      img.style.maxWidth = "300px";
-  }
+// responsive width based on screen
+if (window.innerWidth > 1400) {
+    // Large desktops
+    img.style.setProperty("width", "clamp(400px, 30vw, 500px)", "important");
+} else if (window.innerWidth >= 1025) {
+    // Laptops
+    img.style.setProperty("width", "clamp(300px, 40vw, 400px)", "important");
+} else {
+    // Tablets / Mobiles
+    img.style.setProperty("width", "clamp(200px, 70vw, 300px)", "important");
+}
 
   // helpful error fallback
   img.onerror = () => {

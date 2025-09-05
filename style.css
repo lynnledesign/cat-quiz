@@ -107,6 +107,9 @@ h1 {
 /* ==============================
    Buttons
 ============================== */
+/* ==============================
+   Buttons - Responsive
+============================== */
 button {
     background-color: black;
     color: white;
@@ -120,44 +123,47 @@ button {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Hover effect */
 button:hover {
     background-color: #c7dcd0;
     color: black;
 }
 
+/* Dialogue / Question variants */
 .dialogue-btn {
     background-color: black;
 }
-
 .question-btn {
     background-color: #313638;
 }
 
-/* ===== Desktop (default) ===== */
-button {
-    width: clamp(150px, 20%, 300px);
+/* ===== Desktop (large screens >1400px) ===== */
+@media (min-width: 1401px) {
+    button {
+        width: clamp(150px, 20%, 350px);
+    }
 }
 
-/* ===== Laptop screens ===== */
-@media (max-width: 1400px) and (min-width: 1025px) {
+/* ===== Laptops (1025px - 1400px) ===== */
+@media (min-width: 1025px) and (max-width: 1400px) {
     button {
         width: clamp(180px, 35%, 420px); /* wider for laptops */
     }
 }
 
-/* ===== Tablet range ===== */
-@media (max-width: 1024px) and (min-width: 769px) {
+/* ===== Tablets (769px - 1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
     button {
         width: clamp(160px, 40%, 400px);
     }
 }
 
-/* ===== Mobile range ===== */
+/* ===== Mobile (up to 768px) ===== */
 @media (max-width: 768px) {
     button {
-        width: 70%;       /* 70% of viewport width */
-        min-width: 140px; /* ensure it never gets too small */
-        max-width: 300px; /* ensure it never gets too big */
+        width: 70%;        /* 70% of viewport width */
+        min-width: 140px;  /* never too small */
+        max-width: 300px;  /* never too big */
     }
 }
 
